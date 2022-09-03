@@ -13,7 +13,7 @@ export function Card({ ...props }) {
   async function download(e) {
     e.preventDefault();
 
-    let url = 'https://raw.githubusercontent.com/RaulSCoelho/Templates-CSharp/main/public/icon.png';
+    let url = 'https://raw.githubusercontent.com/RaulSCoelho/Templates-CSharp/main/public/templateIcon.png';
     let zip = new JSZip();
     let templateData = JSON.stringify(props.state.template, null, 2);
     let ideData = JSON.stringify(props.state.ide, null, 2);
