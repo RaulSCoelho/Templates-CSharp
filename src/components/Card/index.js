@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 
@@ -12,27 +10,26 @@ import { TextArea } from '../TextArea';
 import { styles } from './style';
 
 export function Card({ ...props }) {
-  const [imgUrl, setImgUrl] = useState('');
   async function download(e) {
     e.preventDefault();
 
+    let url = 'https://raw.githubusercontent.com/RaulSCoelho/Templates-CSharp/main/public/icon.png';
     let zip = new JSZip();
     let templateData = JSON.stringify(props.state.template, null, 2);
     let ideData = JSON.stringify(props.state.ide, null, 2);
-    let url = 'https://github.com/RaulSCoelho/Templates-CSharp/blob/main/public/icon.png?raw=true';
-    const fetchImage = async () => {
-      const img = await fetch(url);
-      const imgBlob = await img.blob();
-      const imageObjectURL = URL.createObjectURL(imgBlob);
-      setImgUrl(imageObjectURL);
-    };
-    fetchImage();
-    // let template = zip.folder('.template.config');
-    // template.file('template.json', templateData).file('ide.host.json', ideData);
 
-    // zip.generateAsync({ type: 'blob' }).then(async (content) => {
-    //   saveAs(content, 'template.zip');
-    // });
+    const img = await fetch(url, { cache: 'reload' });
+    const imgBlob = await img.blob();
+
+    let template = zip.folder('.template.config');
+    template
+      .file('template.json', templateData)
+      .file('ide.host.json', ideData)
+      .file('icon.png', imgBlob, { binary: true });
+
+    zip.generateAsync({ type: 'blob' }).then(async (content) => {
+      saveAs(content, 'template.zip');
+    });
   }
 
   return (
@@ -44,7 +41,7 @@ export function Card({ ...props }) {
           justifyContent: 'space-between',
         }}
       >
-        <Icon icon={imgUrl} style={styles.iconStyle} />
+        <Icon icon="icon.png" style={styles.iconStyle} />
         <DownloadButton click={(e) => download(e)} style={{ height: 'auto' }} />
       </Flex>
       <Flex style={styles.flexStyle}>
