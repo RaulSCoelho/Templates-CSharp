@@ -1,0 +1,15 @@
+{
+  "short_name": "Templates",
+  "name": "Create C# Template",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "64x35"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
