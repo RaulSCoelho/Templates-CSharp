@@ -11,6 +11,8 @@
   },
   "plugins": ["react", "import-helpers"],
   "rules": {
+    "func-names": "off",
+    "no-param-reassign": "off",
     "no-unused-vars": "off",
     "prefer-const": "off",
     "react/jsx-props-no-spreading": "off",
