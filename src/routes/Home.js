@@ -9,7 +9,7 @@ import TemplateContext from '../context/TemplateContext';
 function Home() {
   const { state, template, setTemplate } = useContext(TemplateContext);
 
-  const style = {
+  const boxStyle = {
     backgroundColor: 'rgb(36,36,36)',
     minHeight: '100vh',
     justifyContent: 'center',
@@ -27,7 +27,6 @@ function Home() {
     setTemplate({
       ...template,
       name: e.target.value,
-      defaultName: e.target.value,
       identity: e.target.value,
       shortName: e.target.value,
       sourceName: e.target.value,
@@ -35,7 +34,7 @@ function Home() {
   }
 
   return (
-    <Flex style={style}>
+    <Flex style={boxStyle}>
       <Flex>
         <Flex style={{ width: '420px', alignItems: 'start' }}>
           <h1>Autor</h1>

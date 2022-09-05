@@ -1,4 +1,6 @@
-import { createContext, useMemo, useState } from 'react';
+import {
+  createContext, useCallback, useMemo, useState
+} from 'react';
 
 const TemplateContext = createContext();
 
@@ -31,12 +33,12 @@ const INITIAL_STATE = {
 export function TemplateProvider({ children }) {
   let [state, setState] = useState(INITIAL_STATE);
 
-  function setTemplate(template) {
+  const setTemplate = useCallback((template) => {
     setState({
       ...state,
       template: template,
     });
-  }
+  }, []);
 
   const contextData = useMemo(() => {
     for (const [key, value] of Object.entries(state.template)) {
