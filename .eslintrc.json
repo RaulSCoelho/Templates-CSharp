@@ -1,36 +1,35 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": ["plugin:react/recommended", "airbnb", "plugin:react/jsx-runtime"],
-  "overrides": [],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "plugins": ["react", "import-helpers"],
+  "extends": "@rocketseat/eslint-config/react",
+  "plugins": ["import-helpers"],
   "rules": {
-    "func-names": "off",
-    "no-param-reassign": "off",
-    "no-unused-vars": "off",
-    "prefer-const": "off",
-    "react/jsx-props-no-spreading": "off",
-    "no-restricted-syntax": "off",
-    "object-shorthand": "off",
-    "no-console": "off",
-    "react/prop-types": "off",
-    "react/jsx-curly-newline": "off",
-    "implicit-arrow-linebreak": "off",
-    "comma-dangle": "off",
-    "default-param-last": "off",
-    "import/prefer-default-export": "off",
-    "react/jsx-filename-extension": [
+    "prettier/prettier": [
       "error",
       {
-        "extensions": [".js", ".jsx"]
+        "singleQuote": true,
+        "arrowParens": "avoid",
+        "semi": false,
+        "endOfLine": "auto"
       }
     ],
+    "react/jsx-no-useless-fragment": "warn",
+    "func-names": "warn",
+    "no-param-reassign": "warn",
+    "no-unused-vars": "warn",
+    "prefer-const": "warn",
+    "no-restricted-syntax": "warn",
+    "object-shorthand": "warn",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-curly-newline": "off",
+    "default-param-last": "off",
+    "no-use-before-define": "off",
+    "arrow-parens": "off",
+    "arrow-body-style": "off",
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "comma-dangle": "off",
+    "react/button-has-type": "off",
     "import-helpers/order-imports": [
       "warn",
       {
