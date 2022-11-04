@@ -11,7 +11,7 @@ interface FieldProps {
   onInput?: (text: string) => void
 }
 
-export const FieldComponent: React.FC<FieldProps> = props => {
+export const Field: React.FC<FieldProps> = memo(props => {
   const inputRef = useRef<HTMLInputElement>()
 
   const setField = useCallback(() => {
@@ -32,6 +32,4 @@ export const FieldComponent: React.FC<FieldProps> = props => {
       />
     </Flex>
   )
-}
-
-export const Field = memo(FieldComponent)
+})

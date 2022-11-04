@@ -30,6 +30,7 @@
     "no-console": "off",
     "comma-dangle": "off",
     "react/button-has-type": "off",
+    "react/display-name": "off",
     "import-helpers/order-imports": [
       "warn",
       {

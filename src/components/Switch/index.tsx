@@ -12,7 +12,7 @@ interface Props {
   onClick: () => void
 }
 
-const SwitchComponent: React.FC<Props> = props => {
+export const Switch: React.FC<Props> = memo(props => {
   let backgroundColor = null
   if (props.onColor || props.offColor)
     backgroundColor = props.switchWhen ? props.onColor : props.offColor
@@ -39,6 +39,4 @@ const SwitchComponent: React.FC<Props> = props => {
       </div>
     </SwitchStyle>
   )
-}
-
-export const Switch = memo(SwitchComponent)
+})

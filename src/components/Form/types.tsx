@@ -1,32 +1,59 @@
-import React, { useContext } from 'react'
+import React, { memo, useCallback, useContext, useRef } from 'react'
 
-import { DeleteButton } from 'components/Buttons'
+import { AddButton, DeleteButton } from 'components/Buttons'
 import { Flex } from 'components/Flex'
 import { Input } from 'components/Input'
+import { Text } from 'components/Text'
 import { TemplateContext } from 'context/TemplateContext'
 
-interface TypesProps {
-  placeholder?: string
-  type?: string
-  inputRef?: React.MutableRefObject<HTMLInputElement>
-  readonly?: boolean
-  typeIndex?: number
+export const Types: React.FC = memo(() => {
+  const { template, addType } = useContext(TemplateContext)
+  const typeRef = useRef<HTMLInputElement>()
+
+  const add = useCallback(() => {
+    addType(typeRef.current.value)
+    typeRef.current.value = ''
+  }, [addType])
+
+  return (
+    <Flex direction="row" alignItems="start" gap={10}>
+      <Text bold={true} fontSize="16pt" padding="0 5px 5px 5px">
+        Tipos:
+      </Text>
+      <Flex justifyContent="start" wrap="wrap" gap={10}>
+        {template.template.classifications.map((type, i) => {
+          return <Type type={type} typeIndex={i} key={i} />
+        })}
+        <Flex width="auto" direction="row">
+          <Input
+            type="text"
+            placeholder="tipos da aplicação"
+            ref={typeRef}
+            textAlign="center"
+          />
+        </Flex>
+        <AddButton size={25} onClick={add} />
+      </Flex>
+    </Flex>
+  )
+})
+
+interface TypeProps {
+  typeIndex: number
+  type: string
 }
 
-export const Types: React.FC<TypesProps> = props => {
+const Type: React.FC<TypeProps> = memo(props => {
   const { removeType } = useContext(TemplateContext)
+
+  const remove = useCallback(() => {
+    removeType(props.typeIndex)
+  }, [props.typeIndex, removeType])
 
   return (
     <Flex width="auto" direction="row">
-      <Input
-        type="text"
-        value={props.type}
-        placeholder={props.placeholder}
-        ref={props.inputRef}
-        readOnly={props.readonly}
-        textAlign="center"
-      />
-      <DeleteButton size={20} onClick={() => removeType(props.typeIndex)} />
+      <Input type="text" value={props.type} textAlign="center" readOnly />
+      <DeleteButton size={20} onClick={remove} />
     </Flex>
   )
-}
+})
