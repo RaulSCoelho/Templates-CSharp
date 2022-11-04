@@ -1,13 +1,16 @@
-import React, { memo, useCallback, useContext, useRef } from 'react'
+import React, { memo, useCallback, useRef } from 'react'
 
 import { AddButton, DeleteButton } from 'components/Buttons'
 import { Flex } from 'components/Flex'
 import { Input } from 'components/Input'
 import { Text } from 'components/Text'
-import { TemplateContext } from 'context/TemplateContext'
+import { useAddType } from 'hooks/useAddType'
+import { useRemoveType } from 'hooks/useRemoveType'
+import { useTemplate } from 'hooks/useTemplate'
 
 export const Types: React.FC = memo(() => {
-  const { template, addType } = useContext(TemplateContext)
+  const { template } = useTemplate()
+  const { addType } = useAddType()
   const typeRef = useRef<HTMLInputElement>()
 
   const add = useCallback(() => {
@@ -44,7 +47,7 @@ interface TypeProps {
 }
 
 const Type: React.FC<TypeProps> = memo(props => {
-  const { removeType } = useContext(TemplateContext)
+  const { removeType } = useRemoveType()
 
   const remove = useCallback(() => {
     removeType(props.typeIndex)

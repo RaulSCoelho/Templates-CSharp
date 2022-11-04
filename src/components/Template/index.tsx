@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { DownloadButton } from 'components/Buttons'
 import { Flex } from 'components/Flex'
-import { TemplateContext } from 'context/TemplateContext'
 import { saveAs } from 'file-saver'
+import { useTemplate } from 'hooks/useTemplate'
 import JSZip from 'jszip'
 
 import { TemplateStyle } from './styles'
 
 export const Template: React.FC = () => {
-  const { template } = useContext(TemplateContext)
+  const { template } = useTemplate()
 
   async function download() {
     const url =

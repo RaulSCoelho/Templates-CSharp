@@ -1,14 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import { TemplateContext } from 'context/TemplateContext'
+import { useSetAuthor } from 'hooks/useSetAuthor'
+import { useSetDescription } from 'hooks/useSetDescription'
+import { useSetNamespace } from 'hooks/useSetNamespace'
 
 import { Field } from './field'
 import { FormStyle } from './styles'
 import { Types } from './types'
 
 export const Form: React.FC = () => {
-  const { setAuthor, setNamespace, setDescription } =
-    useContext(TemplateContext)
+  const { setAuthor } = useSetAuthor()
+  const { setNamespace } = useSetNamespace()
+  const { setDescription } = useSetDescription()
 
   return (
     <FormStyle>

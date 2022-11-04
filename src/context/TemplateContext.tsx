@@ -1,4 +1,6 @@
-import React, { createContext, useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
+
+import { createContext } from 'use-context-selector'
 
 interface TemplateJSON {
   template?: {
