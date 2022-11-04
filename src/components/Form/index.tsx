@@ -13,41 +13,23 @@ export const Form: React.FC = () => {
   const { template, setAuthor, setNamespace, setDescription, addType } =
     useContext(TemplateContext)
   const typeRef = useRef<HTMLInputElement>()
-  const authorRef = useRef<HTMLInputElement>()
-  const namespaceRef = useRef<HTMLInputElement>()
-  const descriptionRef = useRef<HTMLInputElement>()
-
-  const setName = () => {
-    setAuthor(authorRef.current.value)
-  }
-
-  const setProjectName = () => {
-    setNamespace(namespaceRef.current.value)
-  }
-
-  const setDesc = () => {
-    setDescription(descriptionRef.current.value)
-  }
 
   return (
     <FormStyle>
       <Field
         label="Autor:"
         placeholder="Coloque seu nome"
-        inputRef={authorRef}
-        onInput={setName}
+        onInput={setAuthor}
       />
       <Field
         label="Projeto:"
         defaultValue="SixConsult.NET.Foundation.(nome do seu projeto)"
-        inputRef={namespaceRef}
-        onInput={setProjectName}
+        onInput={setNamespace}
       />
       <Field
         label="Descrição:"
         defaultValue="Um modelo de projeto pronto para criar {seu tipo de projeto}."
-        inputRef={descriptionRef}
-        onInput={setDesc}
+        onInput={setDescription}
       />
       <Flex direction="row" alignItems="start" gap={10}>
         <Text bold={true} fontSize="16pt" padding="0 5px 5px 5px">

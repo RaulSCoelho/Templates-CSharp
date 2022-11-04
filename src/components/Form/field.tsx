@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, useCallback, useRef } from 'react'
 
 import { Flex } from 'components/Flex'
 import { Input } from 'components/Input'
@@ -8,11 +8,16 @@ interface FieldProps {
   label: string
   placeholder?: string
   defaultValue?: string
-  inputRef?: React.MutableRefObject<HTMLInputElement>
-  onInput?: () => void
+  onInput?: (text: string) => void
 }
 
-export const Field: React.FC<FieldProps> = props => {
+export const FieldComponent: React.FC<FieldProps> = props => {
+  const inputRef = useRef<HTMLInputElement>()
+
+  const setField = useCallback(() => {
+    props.onInput(inputRef.current.value)
+  }, [props])
+
   return (
     <Flex direction="row" gap={10}>
       <Text bold={true} fontSize="16pt" padding="0 5px 5px 5px">
@@ -22,9 +27,11 @@ export const Field: React.FC<FieldProps> = props => {
         type="text"
         placeholder={props.placeholder}
         defaultValue={props.defaultValue}
-        ref={props.inputRef}
-        onInput={props.onInput}
+        ref={inputRef}
+        onInput={setField}
       />
     </Flex>
   )
 }
+
+export const Field = memo(FieldComponent)
